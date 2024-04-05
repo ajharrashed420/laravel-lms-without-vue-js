@@ -1,0 +1,85 @@
+<x-guest-layout>
+  <div class="container mx-auto">
+      <!--Hero Section-->
+        <div>
+          <form action="" class="mt-20">
+              <div class="w-full relative max-w-[860px] mx-auto px-5 pb-[138px] pt-24">
+                  <div class="w-full mx-auto flex flex-col items-center justify-center">
+                    <h1 class="text-center w-full mx-auto heading-primary mb-3"> The best Courses and Books on the <span class="text-orange">Laravel</span> ecosystem </h1>
+                    <p class="text-secoundery-color w-full text-lg text-center my-4 mb-10"> Find the right books and courses on the Laravel framework and related topics to suite your level of expertise. Know how good a course is through your peers review and share your own too. </p>
+
+                    <!--Search Form-->
+                    <div class="flex w-[700px] gap-x-6">
+                      <input type="search" name="keyword" placeholder="Enter keywords to search courses" class="w-4/5 bg-white h-12 border input-focus border-orange rounded-lg px-3.5 outline-none" required>
+                      <button type="submit" class="btn-primary w-1/5 text-white"> Search </button>
+                    </div>
+                  </div>
+                  <!--hero icon-->
+                  <img src="{{asset('/images/round.png')}}" alt="angle" class="absolute pointer-events-none top-[150px] -left-28">
+                  <img src="https://laravel-courses.com/img/left-bottom-angle.png" alt="angle" class="absolute  pointer-events-none top-[370px] -left-12">
+                  <img src="https://laravel-courses.com/img/right-angle.png" alt="angle" class="absolute pointer-events-none top-[70px] -right-6">
+                  <img src="https://laravel-courses.com/img/right-bottom-angle.png" alt="angle" class="absolute   pointer-events-none top-[360px] -right-24">
+            </div>
+          </form>
+          <img src="https://laravel-courses.com/img/right-center-angle.png" alt="angle" class="w-auto h-auto object-contain absolute top-1/2 -translate-y-1/2 right-10 pointer-events-none">
+          </div>
+
+
+
+          <!--Brand Logo Section-->
+          <div>
+          <ul class="flex items-center flex-nowrap justify-between gap-y-7 gap-3">
+              
+            @foreach($series as $item)
+              <li class="w-full lg:max-w-[165px]">
+                <a href="#" class="bg-white border mx-auto border-orange box-shadow w-full h-12 md:h-16 rounded-lg flex items-center justify-center">
+                  <img src="{{$item['image']}}" alt="{{$item->name}}" class="w-20 md:w-auto h-auto object-contain">
+                </a>
+              </li>
+            @endforeach
+            </ul>
+          </div>
+
+          <!--Course List-->
+          <section class="mt-20 lg:mt-[140px]">
+            <h1 class="heading-tertiory text-center mb-10 md:mb-16"> Courses </h1>
+            <div class="max-w-7xl w-full inline-flex single-feature gap-10 flex-wrap mx-auto">
+
+              @foreach($courses as $course)
+                @include('components.course-box', ['course'=>$course])
+              @endforeach
+
+            </div>
+            <div class="flex justify-center mt-12 mb-12">
+              <a href="https://laravel-courses.com/courses">
+                <button class="btn-primary text-white h-14 w-32"> Browse all </button>
+              </a>
+            </div>
+          </section>
+
+          {{-- Review List Section --}}
+          <div class="my-5 p-10 bg-gray-100">
+            <h2 class="mt-4 pt-4 pb-3 text-2xl font-bold text-gray-900 text-center">All Reviews</h2>
+            @if(count($reviews) > 0)
+              @foreach ($reviews as $review)
+                <p class="mt-2 bg-white rounded-sm shadow p-6">
+                  {{$review->comment}} <br>
+                  <b>{{$review->user->name}}</b>
+                </p>
+              @endforeach
+              
+            @else
+              <p class="mt-2 bg-white rounded-sm shadow p-6">No review yet.</p>
+            @endif
+          </div>
+  
+
+
+      </div>
+
+        
+
+    </div>
+  </div>
+        
+</x-guest-layout>
